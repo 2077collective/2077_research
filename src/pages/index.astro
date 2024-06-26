@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Main from "../components/Main.astro";
+import H1 from "../components/H1.astro";
+import ResearchNav from "../components/ResearchNav.astro";
+import PostList from "../components/PostList.astro";
+
+const posts = await getCollection("posts");
+---
+
+<Layout title="Research | 2077 Collective">
+	<main>
+		<section class="content">
+			<div class="content_heading">
+				<H1
+        text="Research"
+      />
+				<p>Deep dive technical analysis on the Ethereum ecosystem</p>
+			</div>
+			<div class="reasearchNav">
+				<ResearchNav/>
+			</div>
+		</section>
+		<section class="blog_articles">
+			{posts.map((post) => <PostList post={post} />)}
+		</section>
+	</main>
+</Layout>
+
+<style lang="scss">
+	.content {
+		margin-block: 4rem;
+		&_heading {
+			margin-block-end: 2rem;
+		}
+	}
+	.blog {
+      margin-inline: var(--space-body);
+      margin-block-end: 6rem;
+  
+      &_heading {
+          text-align: left;
+      margin-block-end: 1.6rem;
+      }
+  
+      &_subheading {
+        font-size: var(--subheading);
+        margin-block-start: 1.2rem;
+        margin-block-end: 2rem;
+      }
+      &_articles {
+        display: grid;
+        row-gap: 1.6rem;
+        column-gap: 1.6rem;
+        justify-content: center;
+      }
+      &_cta {
+      margin-block: 8rem;
+          display: flex;
+          justify-content: center;
+      }
+
+      @media only screen and (min-width: 640px) and (-webkit-min-device-pixel-ratio: 1) {
+          &_articles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      }
+      @media only screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+          &_articles {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      }
+    }
+</style>

@@ -1,0 +1,143 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Main from "../../components/Main.astro";
+import H1 from "../../components/H1.astro";
+import { Image } from "astro:assets";
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts");
+  const paths = posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+  });
+  return paths;
+};
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<!--
+<Layout title={post.data.title}>
+  <Main>
+    <H1 text={post.data.title} />
+
+    <section class="article_image">
+      <a href={`/blog/${post.slug}`}>
+        <Image
+          src={post.data.image}
+          width={1024}
+          height={1024 / 1.5}
+          alt={post.data.title}
+          class="rounded-2xl test"
+        />
+      </a>
+    </section>
+
+    <section class="article_content">
+      <Content />
+    </section>
+  </Main>
+</Layout>
+-->
+
+
+<Layout title="2077 Collective Teaser Website">
+	<main>
+		<header class="header">
+		</header>
+		<section class="flow heading">
+			<div>
+        <H1 text={post.data.title} />
+        <section class="article_image">
+          <a href={`/blog/${post.slug}`}>
+            <Image
+              src={post.data.image}
+              width={1024}
+              height={1024 / 1.5}
+              alt={post.data.title}
+              class="rounded-2xl test"
+            />
+          </a>
+        </section>
+			</div>
+			<img src="/as.webp" alt="">
+		</section>
+		<article class="flow hero">
+			<h2><a href="" id="abstract">Abstract</a></h2>
+			<p class="lede">This specification defines a community-driven initiative to strengthen Ethereum's brand and onboard new users through coordinated marketing efforts. The newly formed 2077 Collective (a.k.a. Ethereum’s Unofficial Marketing Department™) rallies the social layer to defend and promote the Ethereum brand and fix the current lack of representation online.</p>
+			<h2><a href="" id="motivation">Motivation</a></h2>
+			<p>
+				Other Layer 1 (L1) blockchains have a large social layer presence on X/Twitter and other social media platforms—groups that actively work to strengthen the brands of competing L1s. Despite being the largest smart contract enabled blockchain in terms of market cap and users, Ethereum lacks a strong social media presence (outside certain platforms such as Farcaster), with the defenders of the brand outnumbered by superior shitposting and bullposting from other L1 communities. 
+			</p>
+			<p>
+				
+As we wish to spread Ethereum and cypherpunk values to as large an audience as possible, there must be a coherent effort for the production and distribution of high-quality memes and other social layer messages online. This effort must be proactive and reactive to be able to create new narratives while responding to existing critiques or narratives of other blockchain networks.
+			</p>
+			<p>
+				The 2077 Collective SHALL produce and distribute Ethereum-related content across various formats (video, podcasts, social media posts, blogs, articles, and more) and channels. This will include high quality memes and content about new Ethereum upgrades and protocol research, updates on DeFi protocols and consumer applications, and interviews + discussions with builders and creators in the Ethereum ecosystem.  Content created and disseminated by the 2077 Collective MUST NOT be cringe
+			</p>
+			<h2><a href="" id="specification">Specification</a></h2>
+			<p>
+				This specification defines a community-driven initiative to strengthen Ethereum's brand and onboard new users through coordinated marketing efforts. The newly formed 2077 Collective (a.k.a. Ethereum’s Unofficial Marketing Department™) rallies the social layer to defend and promote the Ethereum brand and fix the current lack of representation online.
+			</p>
+			
+			<code>
+				<p>
+				interface I2077Collective <br>
+				    /// SHOULD generate and poast a high quality banger <br>
+				    function poast() public; <br>
+				    /// SHOULD return https://discord.gg/mfYyNJbaU5 <br>
+				    function discord() public view returns (string memory); <br>
+				    /// MUST return @2077Collective <br>
+				    function twitter() public view returns (string memory); <br>
+
+				</p>
+			</code>
+			<p>
+				The <a href="https://2077.xyz">2077 Collective</a> Collective SHALL produce and distribute Ethereum-related content across various formats (video, podcasts, social media posts, blogs, articles, and more) and channels. This will include high quality memes and content about new Ethereum upgrades and protocol research, updates on DeFi protocols and consumer applications, and interviews + discussions with builders and creators in the Ethereum ecosystem.  Content created and disseminated by the 2077 Collective MUST NOT be cringe
+			</p>
+			<h2><a href="" id="rationale">Rationale</a></h2>
+			<p>
+				A central organization for creating marketing for Ethereum, as a public good, will likely be more effective compared to the current architecturally decentralized approach due to increased coordination allowing for the creation and maintenance of a coherent brand.
+			</p>
+			<h2><a href="" id="backwards_compatibility">Backwards Compatibility</a></h2>
+			<p>
+				This EIP introduces backwards incompatible changes to Ethereum's social layer and must be accompanied by a cultural hard fork. The industry is required to prepare sufficiently for these changes to Ethereum's messaging and promotion.
+			</p>
+			<h2><a href="" id="security_considerations">Security Considerations</a></h2>
+			<p>
+				This change injects life into Ethereum's marketing engine and is projected to accelerate adoption, usage, and mindshare to significant levels. We foresee a fundamental vibe shift and increased awareness of Ethereum's greatness, awesomeness, and coolness of Ethereum as a result of EIP-2077. Individuals suffering from etherphobia may experience intense bouts of cope, frustration, and liquidation due to prolonged exposure to new Ethereum bangers. Such individuals are advised to limit their exposure to Ethernauts, the 2077 Collective, and cryptocurrency in general.
+			</p>
+			<h2><a href="" id="invitation">Invitation</a></h2>
+			<ul>
+				<li>Join our Discord server <a href="">(https://discord.gg/mfYyNJbaU5)</a></li>
+				<li>Follow us on X <a href="">(https://x.com/2077Collective)</a></li>
+				<li>Be based</li>
+			</ul>
+			<h2><a href="" id="copyright">Copyright</a></h2>
+			<p>Copyright and related rights waived via <a href="">MIT</a></p>
+			<h2><a href="" id="citation">Citation</a></h2>
+			<p>
+				Please do not cite this document as:
+			</p>
+			<p>
+				Emmanuel Awosika <a href="">(@eawosikaa)</a>, Lynett.eth <a href="">(@Lynett0x)</a>, and 2077 Collective <a href="">(@2077Collective)</a>, "EIP-2077: Ethereum Marketing Department," Not actually an EIP, no. 2077, May 2024. [Online serial]. Available: <a href="https://2077.xyz">https://2077.xyz</a>.
+			</p>
+			</article>
+		<section class="flow update">
+			<p>Last updated: 24-06-2024</p>
+		</section>
+	</main>
+</Layout>
